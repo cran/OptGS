@@ -1,0 +1,19 @@
+citHeader("To cite OptGS in publications use:")
+
+citEntry(entry = "Article",
+  title        = "{OptGS}: An {R} Package for Finding Near-Optimal Group-Sequential Designs",
+  author       = personList(as.person("James M. S. Wason")),
+  journal      = "Journal of Statistical Software",
+  year         = "2015",
+  volume       = "66",
+  number       = "2",
+  pages        = "1--13",
+  url          = "http://www.jstatsoft.org/v66/i02/",
+
+  textVersion  =
+  paste("James M. S. Wason (2015).",
+        "OptGS: An R Package for Finding Near-Optimal Group-Sequential Designs.",
+        "Journal of Statistical Software, 66(2), 1-13.",
+        "URL http://www.jstatsoft.org/v66/i02/.")
+)
+

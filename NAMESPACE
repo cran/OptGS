@@ -1,0 +1,6 @@
+export(optgs,powerfamily)
+S3method(print,OptGS)
+S3method(plot,OptGS)
+useDynLib(OptGS)
+importFrom("graphics", "abline", "plot")
+  importFrom("stats", "optim", "pnorm", "qnorm", "qt")
