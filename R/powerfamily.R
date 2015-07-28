@@ -1,6 +1,6 @@
 powerfamily_twoparameter_balancevector=function(Deltas,requiredtypeIerror,requiredpower,delta0,delta1,sigma,J,weights)
 {
-return(.C("powerfamily_twoparameter_nonintegern",as.double(Deltas[1]),as.double(Deltas[2]),as.double(requiredtypeIerror),as.double(requiredpower),as.double((delta1-delta0)/sigma),as.double(1),as.integer(J),finalparameters=double(3),ess=double(1),error=double(1),as.integer(4),as.double(weights))$ess)
+     return(.C("powerfamily_twoparameter_nonintegern",as.double(Deltas[1]),as.double(Deltas[2]),as.double(requiredtypeIerror),as.double(requiredpower),as.double((delta1-delta0)/sigma),as.double(1),as.integer(J),finalparameters=double(3),ess=double(1),error=double(1),as.integer(4),as.double(weights))$ess)
 }
 
 
@@ -151,6 +151,7 @@ initial=weights[1]*c(0.4,-0.4)+weights[2]*c(-0.2,0.4)+weights[3]*c(0.3,0.3)+weig
 singlestagesamplesize=(2*sigma^2*(qnorm(1-alpha)+qnorm(power))^2)/(delta1-delta0)^2
 
 optimaldeltas_nonintegern=optim(initial,powerfamily_twoparameter_balancevector,requiredtypeIerror=alpha,requiredpower=power,delta0=delta0,delta1=delta1,sigma=sigma,J=J,weights=weights,control=list(reltol=5e-5))
+
 
 optimaldesign_nonintegern=getparameters_twoparameter_balancevector(optimaldeltas_nonintegern$par,requiredtypeIerror=alpha,requiredpower=power,delta0=delta0,delta1=delta1,sigma=sigma,J=J,weights=weights)
 

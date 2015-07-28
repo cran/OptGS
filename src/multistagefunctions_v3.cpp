@@ -1,12 +1,10 @@
 //multistagefunctions_v2 provides functions that allow finding the operating characteristics of a multistage sequential trial using z-statistics. If the number of stages is below a certain threshold, integration of the multivariate normal is used. If above, the method of sequential integration is used.
 
 
-#include <iostream>
-#include <math.h>
 #include <vector>
-#include <time.h>
 #include "multistagefunctions_v3.h"
 #include "normaldistribution.h"
+#include <math.h>
 
 
 using namespace std;

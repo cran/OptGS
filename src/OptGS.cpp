@@ -1,10 +1,10 @@
-#include <iostream>
-#include <math.h>
 #include <vector>
 #include "multistagefunctions_v3.h"
 #include "normaldistribution.h"
 #include "neldermead.h"
-#include "Rmath.h"
+#include <Rmath.h>
+#include <R.h>
+
 
 
 using namespace std;
@@ -12,7 +12,7 @@ using namespace std;
 
 double functionvalue_twoparameter(double logC1,double logC2,double Deltaf,double Deltae,double requiredtypeIerror,double requiredpower,double delta,double sigma,int J,double *typeIerror,double *power)
 {
-
+ 
  
   double C1=exp(logC1),C2=exp(logC2);
 double expectedsamplesize_null,expectedsamplesize_crd,worstcasedelta,expectedsamplesize_dm;
@@ -47,25 +47,23 @@ double information=pow(C1+C2,2)/(delta*delta);
 
 void findc1andc2_twoparameter(double Deltaf,double Deltae,double requiredtypeIerror,double requiredpower, double delta, double sigma, int J,vector<double>& finallogc1andc2,double *error)
 {
+  int i;
 
+  GetRNGstate();
+ 
+ 
  finallogc1andc2.clear();
  //find c1 and c2 such that typeI error and power are correct
 
  vector<double> start;
  double ynewlo,reqmin=1e-06,step[2],minx,typeIerror,power;
  int konvge=10,kcount=500,icount,numres,ifault;
- //set random number generator to constant seed - DELETE THIS TO ALLOW RANDOM VARIATION IN STARTING VALUES ON DIFFERENT CALLS TO FINDOPTIMALDESIGN()
-
- //srand(100);
-
 
  do
    {
  start.clear();
- start.push_back(((double) runif(0,1)));
- start.push_back(((double) runif(0,1)));
-
-  
+ start.push_back(runif(0,1));
+ start.push_back(runif(0,1));
 
      icount=0;
      numres=0;
@@ -76,8 +74,11 @@ void findc1andc2_twoparameter(double Deltaf,double Deltae,double requiredtypeIer
 
 
  nelmin (start,finallogc1andc2,&ynewlo,reqmin,step,konvge,kcount,&icount,&numres,&ifault,Deltaf,Deltae,requiredtypeIerror,requiredpower,delta,sigma,J,&typeIerror,&power);
+
  finallogc1andc2.at(0)+=0.0001;
 finallogc1andc2.at(1)+=0.0001;
+
+ 
 
  double temp=functionvalue_twoparameter(finallogc1andc2.at(0),finallogc1andc2.at(1),Deltaf,Deltae,requiredtypeIerror,requiredpower,delta,sigma,J,&typeIerror,&power);
 
@@ -85,7 +86,7 @@ finallogc1andc2.at(1)+=0.0001;
 }
  while(typeIerror>requiredtypeIerror+0.001 || typeIerror<requiredtypeIerror-0.001 || power<requiredpower-0.001 || power>requiredpower+0.001);
 
-
+ PutRNGstate();
 }
 
 
@@ -131,7 +132,7 @@ void powerfamily_twoparameter_nonintegern(double *Deltaf,double *Deltae,double *
 
  vector<double> finallogc1andc2;
  findc1andc2_twoparameter(*Deltaf,*Deltae,*requiredtypeIerror,*requiredpower,*delta,*sigma,*J,finallogc1andc2,error);
- 
+
  double logC1=finallogc1andc2.at(0),logC2=finallogc1andc2.at(1);
  
   int j;
