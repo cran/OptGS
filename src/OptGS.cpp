@@ -58,12 +58,12 @@ void findc1andc2_twoparameter(double Deltaf,double Deltae,double requiredtypeIer
  vector<double> start;
  double ynewlo,reqmin=1e-06,step[2],minx,typeIerror,power;
  int konvge=10,kcount=500,icount,numres,ifault;
-
+ start.clear();
+ start.push_back(0.5);
+ start.push_back(0.5);
  do
    {
- start.clear();
- start.push_back(runif(0,1));
- start.push_back(runif(0,1));
+
 
      icount=0;
      numres=0;
@@ -81,8 +81,10 @@ finallogc1andc2.at(1)+=0.0001;
  
 
  double temp=functionvalue_twoparameter(finallogc1andc2.at(0),finallogc1andc2.at(1),Deltaf,Deltae,requiredtypeIerror,requiredpower,delta,sigma,J,&typeIerror,&power);
-
-
+ //if initial starting values don't result in convergence, try different ones:
+ start.clear();
+ start.push_back(runif(0,1));
+ start.push_back(runif(0,1));
 }
  while(typeIerror>requiredtypeIerror+0.001 || typeIerror<requiredtypeIerror-0.001 || power<requiredpower-0.001 || power>requiredpower+0.001);
 

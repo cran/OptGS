@@ -1,11 +1,11 @@
-aced6b69e75f76537d40c0df51b851e5 *DESCRIPTION
+7e1089955db443c28c4342557e02b0a0 *DESCRIPTION
 de30d491f56980a04ca42c95edee0016 *NAMESPACE
 6775947c3ac8dc9348a9aa1a14b4d5f0 *R/powerfamily.R
 70469cc1fcf96916b69d11c034eba8da *inst/CITATION
 79d2d31f45ba2d04da6cee9f32f1e67a *man/all.class.Rd
 b43ceca60e71c389cbbf121b0265a31a *man/optgs.Rd
 a598231df0223bf25589586ead3f7e20 *man/powerfamily.Rd
-1193cd0dbe29df578e1ac37cd86e4fe9 *src/OptGS.cpp
+04ae578c47bb7c8593b500dd4a61c41f *src/OptGS.cpp
 6819b695fe7ca2bfe4480a12eeefa6b7 *src/OptGS.h
 424e97bc102dbccfc3e4a777a5db2263 *src/multistagefunctions_v3.cpp
 d85e3e2ec0986d9e4d5c67c3e9f19176 *src/multistagefunctions_v3.h
